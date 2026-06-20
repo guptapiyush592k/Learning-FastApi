@@ -1,4 +1,6 @@
+from pydoc import allmethods
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 import database_model
 from models import Product
 from database import engine
@@ -9,6 +11,13 @@ app = FastAPI()
 
 #the below line is responsible to create the tables in the database
 database_model.Base.metadata.create_all(bind=engine)
+
+#the below code is handling CORS error
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin=['http://localhost:3000'],
+    allow_methos=['*']
+)
 
 @app.get("/") 
 def greet():
