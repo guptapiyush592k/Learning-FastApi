@@ -12,4 +12,4 @@ url = URL.create(
 )
 
 engine = create_engine(url)
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
